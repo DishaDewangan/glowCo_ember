@@ -11,6 +11,10 @@ const SUGGESTIONS = [
 export default function ChatPage() {
   return (
     <div className="chat-page">
+      <div className="chat-page-header">
+        <h1>Campaign Agent</h1>
+        <p>Describe your goal. Ember segments customers, drafts messages, and launches campaigns.</p>
+      </div>
       <AgentChat suggestions={SUGGESTIONS} />
     </div>
   );

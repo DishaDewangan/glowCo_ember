@@ -1,0 +1,99 @@
+.segments-page .total-banner {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--sage-light), var(--cream-dark));
+}
+
+.total-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--leaf);
+}
+
+.total-label {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.segments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.segment-card {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.segment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow-lg);
+}
+
+.segment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+}
+
+.segment-header h3 {
+  font-size: 1.15rem;
+  color: var(--leaf);
+  text-transform: capitalize;
+}
+
+.segment-count {
+  background: var(--sage-light);
+  color: var(--sage-dark);
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.segment-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.segment-source {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+.segments-cta {
+  text-align: center;
+}
+
+.segments-cta h3 {
+  font-size: 1.25rem;
+  color: var(--leaf);
+  margin-bottom: 0.5rem;
+}
+
+.segments-cta p {
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loading-text,
+.error-text {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+}
+
+.error-text {
+  color: var(--blush);
+}

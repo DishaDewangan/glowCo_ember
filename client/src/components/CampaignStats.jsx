@@ -9,7 +9,7 @@ import {
 } from 'recharts';
 import './CampaignStats.css';
 
-const FUNNEL_COLORS = ['#ff6b4a', '#ff8f7a', '#ffb5a0', '#ffd4c8', '#4ade80'];
+const FUNNEL_COLORS = ['#7d9b76', '#9bb896', '#b8d4b4', '#e8a598', '#5c9b6d'];
 
 export default function CampaignStats({ stats, campaignName }) {
   if (!stats) return null;
@@ -47,12 +47,12 @@ export default function CampaignStats({ stats, campaignName }) {
         <h4>Campaign Funnel</h4>
         <ResponsiveContainer width="100%" height={220}>
           <BarChart data={funnelData} layout="vertical" margin={{ left: 20, right: 20 }}>
-            <XAxis type="number" stroke="#8888a0" fontSize={12} />
-            <YAxis type="category" dataKey="stage" stroke="#8888a0" fontSize={12} width={80} />
+            <XAxis type="number" stroke="#9a9a9a" fontSize={12} />
+            <YAxis type="category" dataKey="stage" stroke="#9a9a9a" fontSize={12} width={80} />
             <Tooltip
               contentStyle={{
-                background: '#1a1a22',
-                border: '1px solid #2a2a36',
+                background: '#faf7f2',
+                border: '1px solid #e5ddd3',
                 borderRadius: 8,
               }}
             />

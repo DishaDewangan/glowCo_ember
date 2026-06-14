@@ -7,6 +7,7 @@ import ingestRoutes from './routes/ingest.js';
 import campaignRoutes from './routes/campaigns.js';
 import receiptRoutes from './routes/receipts.js';
 import analyticsRoutes from './routes/analytics.js';
+import segmentRoutes from './routes/segments.js';
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use('/api/agent', agentRoutes);
 app.use('/api/customers', ingestRoutes);
 app.use('/api/campaigns', campaignRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/segments', segmentRoutes);
 app.use('/', receiptRoutes);
 
 async function start() {

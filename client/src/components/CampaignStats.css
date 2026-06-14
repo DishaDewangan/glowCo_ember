@@ -1,5 +1,5 @@
 .campaign-stats {
-  background: var(--surface);
+  background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.5rem;
@@ -7,6 +7,7 @@
 
 .stats-title {
   font-size: 1.1rem;
+  color: var(--leaf);
   margin-bottom: 1rem;
 }
 
@@ -18,9 +19,9 @@
 }
 
 .rate-card {
-  background: var(--bg);
+  background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -36,27 +37,29 @@
 .rate-value {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--ember);
+  color: var(--sage);
   margin: 0.25rem 0;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .rate-sub {
   font-size: 0.7rem;
-  color: var(--text-muted);
+  color: var(--text-light);
 }
 
 .funnel-chart h4 {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
+  font-family: 'Outfit', sans-serif;
 }
 
 .failed-notice {
   margin-top: 1rem;
   padding: 0.75rem;
-  background: rgba(232, 93, 76, 0.1);
-  border: 1px solid rgba(232, 93, 76, 0.3);
+  background: var(--blush-soft);
+  border: 1px solid var(--blush);
   border-radius: 8px;
   font-size: 0.85rem;
-  color: var(--accent);
+  color: #a65d52;
 }

@@ -1,20 +1,19 @@
 .tool-bubble {
-  background: var(--tool-bg);
+  background: var(--sage-light);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 0.75rem 1rem;
   margin-bottom: 0.5rem;
   font-size: 0.85rem;
 }
 
 .tool-bubble.running {
-  border-color: var(--ember);
-  box-shadow: 0 0 12px var(--ember-glow);
+  border-color: var(--sage);
+  box-shadow: 0 0 0 2px rgba(125, 155, 118, 0.2);
 }
 
 .tool-bubble.done {
-  border-color: var(--border);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .tool-header {
@@ -33,18 +32,18 @@
 
 .tool-label {
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--sage-dark);
 }
 
 .tool-bubble.running .tool-label {
-  color: var(--ember);
+  color: var(--leaf);
 }
 
 .tool-spinner {
   width: 14px;
   height: 14px;
   border: 2px solid var(--border);
-  border-top-color: var(--ember);
+  border-top-color: var(--sage);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-left: auto;
@@ -57,12 +56,12 @@
 .tool-result {
   margin-top: 0.5rem;
   padding: 0.5rem;
-  background: var(--bg);
-  border-radius: 6px;
+  background: var(--white);
+  border-radius: 8px;
   font-size: 0.75rem;
   color: var(--text-muted);
   overflow-x: auto;
-  max-height: 200px;
+  max-height: 160px;
   white-space: pre-wrap;
   word-break: break-word;
 }

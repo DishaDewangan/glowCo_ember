@@ -2,11 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .dashboard-header h2 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
+  color: var(--leaf);
   margin-bottom: 0.25rem;
 }
 
@@ -17,7 +18,10 @@
 
 .last-updated {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--text-light);
+  background: var(--cream);
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
 }
 
 .dashboard-loading,
@@ -25,6 +29,9 @@
   text-align: center;
   padding: 4rem 2rem;
   color: var(--text-muted);
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--border);
 }
 
 .dashboard-empty p:first-child {
@@ -40,9 +47,9 @@
 }
 
 .campaign-list {
-  background: var(--surface);
+  background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 1rem;
 }
 
@@ -52,6 +59,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.75rem;
+  font-family: 'Outfit', sans-serif;
 }
 
 .campaign-item {
@@ -61,19 +69,19 @@
   padding: 0.75rem;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 10px;
   color: var(--text);
   margin-bottom: 0.25rem;
   transition: all 0.15s;
 }
 
 .campaign-item:hover {
-  background: var(--surface-hover);
+  background: var(--cream);
 }
 
 .campaign-item.active {
-  background: var(--accent-soft);
-  border-color: var(--ember);
+  background: var(--sage-light);
+  border-color: var(--sage);
 }
 
 .campaign-item-name {
@@ -87,6 +95,7 @@
   gap: 0.5rem;
   font-size: 0.75rem;
   color: var(--text-muted);
+  flex-wrap: wrap;
 }
 
 .status {
@@ -98,29 +107,29 @@
 }
 
 .status-live {
-  background: rgba(74, 222, 128, 0.15);
+  background: var(--sage-light);
   color: var(--success);
 }
 
 .status-launching {
-  background: rgba(255, 107, 74, 0.15);
-  color: var(--ember);
+  background: var(--blush-soft);
+  color: var(--blush);
 }
 
 .status-complete {
-  background: rgba(136, 136, 160, 0.15);
+  background: var(--cream-dark);
   color: var(--text-muted);
 }
 
 .status-draft {
-  background: rgba(136, 136, 160, 0.1);
-  color: var(--text-muted);
+  background: var(--cream);
+  color: var(--text-light);
 }
 
 .campaign-detail {
-  background: var(--surface);
+  background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 1.5rem;
 }
 
@@ -133,6 +142,7 @@
 
 .detail-header h3 {
   font-size: 1.2rem;
+  color: var(--leaf);
   margin-bottom: 0.25rem;
 }
 
