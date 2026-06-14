@@ -1,16 +1,21 @@
-# Ember 🔥
+# 🔥 Ember — GlowCo AI-Native CRM
 
-**AI-Native CRM for D2C Brands**
+> Tell it your goal. It builds the campaign.
 
-Ember is a conversational CRM built for GlowCo, a fictional skincare brand.
+Ember is an AI-native CRM built for GlowCo, a fictional D2C skincare brand.
 
-Instead of manually creating segments, drafting messages, and launching campaigns through forms, marketers simply describe their goal in natural language.
+Instead of manually creating customer segments, drafting campaign messages, and launching campaigns through multiple screens, marketers simply describe their goal in natural language.
 
-The AI agent identifies the audience, generates campaign content, launches campaigns, and provides performance insights through a chat interface.
+The AI agent then:
 
-> "Find customers whose moisturiser has probably run out and send them a reminder."
+* Identifies the target audience
+* Explains audience characteristics
+* Generates personalized campaign messages
+* Recommends the best communication channel
+* Launches campaigns
+* Tracks delivery and engagement metrics
 
-Ember handles the rest.
+The result is a conversational CRM where the primary interface is an AI agent rather than forms and dashboards.
 
 ---
 
@@ -22,58 +27,65 @@ Ember handles the rest.
 
 ---
 
-## Key Features
+## ✨ Features
 
 ### Conversational Campaign Creation
 
-Create campaigns using plain English instead of forms and filters.
+Create campaigns using plain English.
 
 Example:
 
 ```text
-Find customers who bought moisturiser 35+ days ago and haven't reordered.
+Find customers whose moisturiser has probably run out and haven't reordered.
 ```
 
 The agent automatically:
 
-* Segments customers
+* Creates a segment
 * Explains the audience
-* Drafts personalized messages
-* Recommends a communication channel
+* Drafts messages
+* Recommends a channel
 * Launches the campaign
 
 ---
 
-### AI Agent with Tool Calling
+### AI Agent Workflow
 
-The agent uses five backend tools:
+The agent can perform multi-step reasoning using tool calling.
 
-| Tool               | Purpose                            |
-| ------------------ | ---------------------------------- |
-| segment_customers  | Build customer segments            |
-| explain_audience   | Summarize audience characteristics |
-| draft_message      | Generate campaign content          |
-| launch_campaign    | Create and launch campaigns        |
-| get_campaign_stats | Retrieve campaign analytics        |
+Example workflow:
+
+```text
+segment_customers
+        ↓
+explain_audience
+        ↓
+draft_message
+        ↓
+launch_campaign
+        ↓
+get_campaign_stats
+```
 
 ---
 
 ### Smart Customer Segmentation
 
-Supports filtering using:
+Supports segmentation using:
 
 * Purchase history
 * Order frequency
-* Spend range
+* Average spend
 * Skin type
 * Preferred channel
 * Product ownership
 * Cohort date
+* Routine completeness
 
 Example:
 
 ```text
-Customers who bought moisturiser but never sunscreen
+Who bought moisturiser but never sunscreen?
 ```
 
 ---
@@ -88,15 +100,13 @@ Track:
 * Clicked
 * Converted
 
-Open rates are calculated using delivered messages rather than total sent messages for more accurate reporting.
+Open rates are calculated using delivered messages rather than total sent messages.
 
 ---
 
 ### Async Delivery Simulation
 
-A separate Stub Service simulates real-world messaging providers.
-
-Supported channels:
+A separate Stub Service simulates messaging providers such as:
 
 * WhatsApp
 * SMS
@@ -107,80 +117,93 @@ The CRM launches campaigns asynchronously and receives delivery events through c
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```text
-React + Vite (Frontend)
-           │
-           ▼
-Express CRM Service
-           │
- ┌─────────┴─────────┐
- ▼                   ▼
-MongoDB Atlas    Stub Service
+React + Vite Frontend (:5173)
+            │
+            ▼
+CRM Service (Express :3000)
+            │
+    ┌───────┴────────┐
+    ▼                ▼
+MongoDB Atlas    Stub Service (:3001)
 
-                      │
-                      ▼
-             Delivery Callbacks
+                     │
+                     ▼
+              Delivery Callbacks
 ```
 
-### Tech Stack
+### Architecture Highlights
 
-Frontend
-
-* React
-* Vite
-* Tailwind CSS
-* Recharts
-* Vercel AI SDK
-
-Backend
-
-* Node.js
-* Express
-* MongoDB Atlas
-* Mongoose
-* Zod
-
-AI
-
-* Claude Sonnet
-* Vercel AI SDK
-
-Deployment
-
-* Vercel
-* Render
-* MongoDB Atlas
+* Separate CRM and Stub services
+* Streaming AI responses using Server-Sent Events
+* MongoDB Atlas with denormalized customer profiles
+* Idempotent callback processing
+* Batched campaign launches
+* Real-time analytics dashboard
 
 ---
 
-## Project Structure
+## 🤖 Agent Tools
+
+| Tool               | Purpose                                  |
+| ------------------ | ---------------------------------------- |
+| segment_customers  | Build MongoDB query from filter criteria |
+| explain_audience   | Generate audience summary                |
+| draft_message      | Generate campaign content using Claude   |
+| launch_campaign    | Launch campaigns through Stub Service    |
+| get_campaign_stats | Retrieve campaign performance metrics    |
+
+---
+
+## 🧪 Demo Prompts
+
+Try these prompts in the chat interface:
+
+### Reorder Campaign
 
 ```text
-client/
-├── components/
-├── pages/
+Find customers whose moisturiser has probably run out — bought 35+ days ago and haven't reordered.
+```
 
-server/
-├── agent/
-├── models/
-├── routes/
-├── services/
+### Sunscreen Gap
 
-stub/
-├── routes/
-├── services/
+```text
+Who bought moisturiser but never sunscreen?
+```
 
-scripts/
-└── seed.js
+### Dry Skin Upsell
+
+```text
+Which customers have dry skin but never bought serum?
+```
+
+### Campaign Performance
+
+```text
+How did the last campaign perform?
 ```
 
 ---
 
-## Database Design
+## 📊 Pre-Built Segments
 
-Main collections:
+The seed data includes several discoverable customer segments:
+
+* Routine Completers
+* Lapsed Reorderers
+* One-Product Buyers
+* New Customers
+* High-Value Loyalists
+* Dry Skin, No Serum
+* Sunscreen Gap
+
+---
+
+## 🗄️ Database Design
+
+Collections:
 
 * Customer
 * Order
@@ -189,7 +212,7 @@ Main collections:
 * Campaign
 * Communication
 
-Customer documents contain denormalized fields such as:
+Customer documents include denormalized fields:
 
 * totalOrders
 * avgSpend
@@ -197,67 +220,45 @@ Customer documents contain denormalized fields such as:
 * productsPurchased
 * routineCompletenessScore
 
-This enables fast segmentation queries without joins.
+This allows segmentation queries without joins.
 
 ---
 
-## Example Workflow
+## 🔌 API Endpoints
 
-### Step 1
-
-User types:
-
-```text
-Find customers whose moisturiser has probably run out.
-```
-
-### Step 2
-
-Agent creates a segment.
-
-```text
-612 customers found.
-```
-
-### Step 3
-
-Agent drafts campaign messages.
-
-### Step 4
-
-Campaign launches through the Stub Service.
-
-### Step 5
-
-Callbacks update delivery statistics.
-
-### Step 6
-
-Dashboard displays performance metrics.
+| Method | Endpoint                | Description           |
+| ------ | ----------------------- | --------------------- |
+| POST   | /api/agent/chat         | Streaming AI chat     |
+| POST   | /api/customers/bulk     | Bulk customer ingest  |
+| GET    | /api/campaigns          | Campaign listing      |
+| GET    | /api/analytics/overview | Dashboard analytics   |
+| POST   | /crm/receipts           | Delivery callbacks    |
+| POST   | /stub/send              | Stub message delivery |
 
 ---
 
-## Running Locally
+## ⚙️ Quick Start
 
-### Clone Repository
+### Prerequisites
 
-```bash
-git clone https://github.com/DishaDewangan/glowCo_ember.git
-cd glowCo_ember
-```
+* Node.js 18+
+* MongoDB Atlas or local MongoDB
+* Anthropic API Key
 
 ### Install Dependencies
 
 ```bash
-npm install
+cd server && npm install
+cd ../stub && npm install
+cd ../client && npm install
 ```
 
-### Environment Variables
-
-Create:
+### Configure Environment
 
 ```bash
-.env
+cp server/.env.example server/.env
+cp stub/.env.example stub/.env
+cp client/.env.example client/.env
 ```
 
 Required variables:
@@ -265,60 +266,119 @@ Required variables:
 ```env
 MONGODB_URI=
 ANTHROPIC_API_KEY=
+CLIENT_URL=
 CRM_BASE_URL=
 STUB_BASE_URL=
-```
-
-### Start CRM Service
-
-```bash
-npm run dev
-```
-
-### Start Stub Service
-
-```bash
-npm run dev:stub
-```
-
-### Start Frontend
-
-```bash
-npm run dev:web
+VITE_API_URL=
 ```
 
 ### Seed Database
 
 ```bash
+cd server
 npm run seed
+```
+
+Creates:
+
+* 2,000 customers
+* ~8,500 orders
+* Product catalogue
+* Pre-built customer segments
+
+### Run Services
+
+CRM
+
+```bash
+cd server && npm run dev
+```
+
+Stub
+
+```bash
+cd stub && npm run dev
+```
+
+Frontend
+
+```bash
+cd client && npm run dev
+```
+
+Open:
+
+```text
+http://localhost:5173
 ```
 
 ---
 
-## Design Decisions
+## 🚢 Deployment
 
-* MongoDB chosen for flexible customer segmentation
-* Denormalized customer fields for faster queries
-* Separate Stub Service to mimic real messaging providers
-* Idempotent callback handling using unique stubMessageId
-* Batch campaign sending to avoid request spikes
-* Streaming AI responses using Server-Sent Events
+### Production Stack
+
+| Layer        | Platform         |
+| ------------ | ---------------- |
+| Frontend     | Vercel           |
+| CRM Service  | Railway / Render |
+| Stub Service | Railway / Render |
+| Database     | MongoDB Atlas    |
+
+After deployment:
+
+* Configure CLIENT_URL on CRM
+* Configure VITE_API_URL on Frontend
+* Configure callback URLs for Stub Service
+
+See `DEPLOYMENT.md` for complete instructions.
 
 ---
 
-## Future Improvements
+## 🎯 Key Design Decisions
 
-* Multi-user authentication
-* RBAC support
-* Real WhatsApp/SMS integrations
-* Queue-based campaign processing
-* A/B testing workflows
-* Automated campaign scheduling
+* MongoDB chosen for flexible segmentation queries
+* Denormalized customer fields for fast lookups
+* Separate Stub Service to mirror real-world messaging providers
+* Fire-and-forget delivery architecture
+* Idempotent callback processing using unique stubMessageId
+* Batched campaign launches to prevent request spikes
+* Streaming AI responses using Vercel AI SDK
 
 ---
 
-## Author
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* Tailwind CSS
+* Recharts
+
+### Backend
+
+* Node.js
+* Express
+* MongoDB Atlas
+* Mongoose
+* Zod
+
+### AI
+
+* Claude Sonnet
+* Vercel AI SDK
+
+### Deployment
+
+* Vercel
+* Railway / Render
+* MongoDB Atlas
+
+---
+
+## 👩‍💻 Author
 
 Disha Dewangan
 
-Built as part of the Xeno Engineering Internship Assignment.
+Built for the Xeno Engineering Internship Assignment.
