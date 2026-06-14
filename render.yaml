@@ -1,0 +1,50 @@
+# Optional Render.com blueprint (alternative to Railway)
+# Dashboard: https://dashboard.render.com -> New Blueprint -> connect GitHub repo
+
+services:
+  - type: web
+    name: glowco-ember-crm
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DEMO_MODE
+        value: "true"
+      - key: NODE_TLS_REJECT_UNAUTHORIZED
+        value: "0"
+      - key: PORT
+        value: "3000"
+      - key: STUB_SERVICE_URL
+        fromService:
+          name: glowco-ember-stub
+          type: web
+          property: host
+      - key: CRM_CALLBACK_URL
+        fromService:
+          name: glowco-ember-crm
+          type: web
+          property: host
+      - key: CLIENT_URL
+        sync: false
+
+  - type: web
+    name: glowco-ember-stub
+    runtime: node
+    rootDir: stub
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "3001"
+      - key: CRM_CALLBACK_URL
+        fromService:
+          name: glowco-ember-crm
+          type: web
+          property: host
