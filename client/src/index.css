@@ -1,0 +1,50 @@
+:root {
+  --bg: #0f0f12;
+  --surface: #1a1a22;
+  --surface-hover: #22222c;
+  --border: #2a2a36;
+  --text: #f0f0f5;
+  --text-muted: #8888a0;
+  --accent: #e85d4c;
+  --accent-soft: rgba(232, 93, 76, 0.15);
+  --ember: #ff6b4a;
+  --ember-glow: rgba(255, 107, 74, 0.3);
+  --success: #4ade80;
+  --tool-bg: #16161e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--ember);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: inherit;
+}
