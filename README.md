@@ -17,10 +17,7 @@ Ember handles the rest.
 ## Live Demo
 
 🌐 Live Application: https://glow-co-ember.vercel.app
-
-📹 Walkthrough Video: [Add Video Link]
-
-📄 Detailed Documentation: [Add Documentation Link]
+📄 Detailed Documentation: https://github.com/DishaDewangan/glowCo_ember/blob/main/Ember_GlowCo_Project_Documentation%20(1).docx
 
 ---
 
