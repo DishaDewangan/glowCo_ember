@@ -101,30 +101,38 @@ async function seedProducts() {
 }
 
 async function seedCustomers(count = 2000) {
-  const customers = [];
-  for (let i = 0; i < count; i++) {
-    const city = weightedPick(CITIES).city;
-    const skinType = weightedPick(SKIN_TYPES).type;
-    const preferredChannel = weightedPick(CHANNELS).channel;
-    const firstName = faker.person.firstName();
-    const lastName = faker.person.lastName();
-    const name = `${firstName} ${lastName}`;
+  const batchSize = 500;
+  const allCustomers = [];
 
-    customers.push({
-      name,
-      phone: randomPhone(),
-      email: faker.internet.email({ firstName, lastName }).toLowerCase(),
-      preferredChannel,
-      city,
-      skinType,
-      cohortDate: cohortDateForCustomer(),
-      totalOrders: 0,
-      avgSpend: 0,
-      productsPurchased: [],
-      routineCompletenessScore: 0,
-    });
+  for (let batch = 0; batch < count; batch += batchSize) {
+    const customers = [];
+    const limit = Math.min(batchSize, count - batch);
+    for (let i = 0; i < limit; i++) {
+      const city = weightedPick(CITIES).city;
+      const skinType = weightedPick(SKIN_TYPES).type;
+      const preferredChannel = weightedPick(CHANNELS).channel;
+      const firstName = faker.person.firstName();
+      const lastName = faker.person.lastName();
+      const name = `${firstName} ${lastName}`;
+
+      customers.push({
+        name,
+        phone: randomPhone(),
+        email: faker.internet.email({ firstName, lastName }).toLowerCase(),
+        preferredChannel,
+        city,
+        skinType,
+        cohortDate: cohortDateForCustomer(),
+        totalOrders: 0,
+        avgSpend: 0,
+        productsPurchased: [],
+        routineCompletenessScore: 0,
+      });
+    }
+    const inserted = await Customer.insertMany(customers);
+    allCustomers.push(...inserted);
   }
-  return Customer.insertMany(customers);
+  return allCustomers;
 }
 
 function pickProductsForOrder(products, archetype) {

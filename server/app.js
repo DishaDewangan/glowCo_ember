@@ -42,6 +42,11 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'glowco-ember-crm' });
 });
 
+app.get('/', (_req, res) => {
+  const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+  res.redirect(clientUrl);
+});
+
 app.use('/api/agent', agentRoutes);
 app.use('/api/customers', ingestRoutes);
 app.use('/api/campaigns', campaignRoutes);
