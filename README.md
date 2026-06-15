@@ -21,7 +21,7 @@ The result is a conversational CRM where the primary interface is an AI agent ra
 
 ## Live Demo
 
-🌐 Live Application: https://glow-co-ember.vercel.app
+🌐 Live Application: https://glow-co-ember-osf5-git-main-disha-dewangans-projects.vercel.app/
 
 📄 Detailed Documentation: https://github.com/DishaDewangan/glowCo_ember/blob/main/Ember_GlowCo_Project_Documentation%20(1).docx
 
